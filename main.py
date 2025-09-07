@@ -1,4 +1,4 @@
-from pinecone import Pinecone, ServerlessSpec
+from pinecone import Pinecone
 import dotenv
 from pathlib import Path
 from config import Config
@@ -21,10 +21,7 @@ if not pc.has_index(conf.index_name):
         name=conf.index_name,
         cloud="aws",
         region="us-east-1",
-        embed={
-            "model":"llama-text-embed-v2",
-            "field_map":{"text": "chunk_text"}
-        }
+        embed={"model": "llama-text-embed-v2", "field_map": {"text": "chunk_text"}},
     )
 
 
@@ -34,6 +31,7 @@ def extract_text_from_pdf(pdf_path):
     for page in reader.pages:
         text += page.extract_text() or ""
     return text
+
 
 def chunk_text(text, chunk_size=1000, overlap=200):
     chunks = []
@@ -49,13 +47,9 @@ for pdf_file in pdf_files:
     text = extract_text_from_pdf(pdf_file)
     chunks = chunk_text(text)
     for i, chunk in enumerate(chunks):
-        record = {
-            "_id": str(uuid.uuid4()),
-            "chunk_text": chunk
-        }
+        record = {"_id": str(uuid.uuid4()), "chunk_text": chunk}
         all_records.append(record)
 
 # Upsert to Pinecone
 index = pc.Index(conf.index_name)
 index.upsert_records("inital-studies", all_records)
-
