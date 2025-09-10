@@ -1,3 +1,10 @@
+---
+layout: default
+title: Conditions
+---
+
+# ACC-DCC Conditions
+
 |Condition Name|Agenesis State|Root Cause|Likelihood|
 |:-------------|:-------------|:---------|:---------|
 |Isolated ACC|Complete|Often unknown; genetic or environmental|35-40% of all ACC cases|

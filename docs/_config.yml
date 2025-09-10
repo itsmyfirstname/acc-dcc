@@ -1,0 +1,18 @@
+title: ACC-DCC Documentation
+description: Documentation for ACC-DCC project
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+
+# Theme
+theme: minima
+# Alternative themes you can try:
+# remote_theme: pmarsceill/just-the-docs  # Popular docs theme
+# remote_theme: rundocs/jekyll-rtd-theme  # Read the Docs style
+
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
